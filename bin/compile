@@ -1,3 +1,17 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# Fail immediately on non-zero exit code.
+set -e
+# Fail immediately on non-zero exit code within a pipeline.
+set -o pipefail
+# Fail on undeclared variables.
+set -u
+# Debug, echo every command
+#set -x
+
+BUILD_DIR=$1
+cd $BUILD_DIR
 cat << EOF > static.json
 {
   "root": "storybook-static/",
