@@ -12,7 +12,12 @@ set -u
 
 BUILD_DIR=$1
 cd $BUILD_DIR
-cat << EOF > static.json
+if [ -f "static.json" ]
+then
+  echo '       Using existing `static.json` (storybook build)'
+else
+  echo '       Writing `static.json` to support storybook build'
+  cat << EOF > static.json
 {
   "root": "storybook-static/",
   "routes": {
@@ -20,3 +25,4 @@ cat << EOF > static.json
   }
 }
 EOF
+fi
